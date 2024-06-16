@@ -18,12 +18,12 @@ mg_online_name = "Online"
 mg_sandbox_name = "Sandbox"
 
 #Subscription
-subscription_management_name = "Management"
-subscription_identity_name = "Identity"
-subscription_connectivity_name = "Connectivity"
-subscription_security_name = "Security"
-subscription_application_name = "Application"
-subscription_online_name = "Online"
+subscription_management_id = "a57406d2-0fce-4a90-92c3-9a13b56e29e6"
+subscription_identity_id = "151bd1cb-49f5-4c90-b3c9-86f6378bfa7a"
+subscription_connectivity_id = "00898e4d-aeee-49aa-b907-d8473d2234d3"
+subscription_security_id = "687bb9f6-ffaa-47e7-b7b9-e7fdcf75b924"
+subscription_application_id = "b89bf583-c969-4743-8f42-6878bfb7406a"
+subscription_online_id = "24eae693-5914-454a-ac50-2db6d7df85d1"
 
 #Backend tfstate
 rg_tfstate_name = "rg-tfstate-bs"

@@ -5,12 +5,26 @@ variable "invoice_section_name" {type = string}
 variable "billing_account_name" {type = string}
 
 #Subscriptions
-variable "subscription_management_name" {type = string}
-variable "subscription_identity_name" {type = string}
-variable "subscription_connectivity_name" {type = string}
-variable "subscription_security_name" {type = string}
-variable "subscription_application_name" {type = string}
-variable "subscription_online_name" {type = string}
+# variable "subscription_management_name" {type = string}
+# variable "subscription_identity_name" {type = string}
+# variable "subscription_connectivity_name" {type = string}
+# variable "subscription_security_name" {type = string}
+# variable "subscription_application_name" {type = string}
+# variable "subscription_online_name" {type = string}
+
+#Existing Subscriptions
+#Managenent
+variable "subscription_management_id" {type = string}
+#Identity
+variable "subscription_identity_id" {type = string}
+#Connectivity
+variable "subscription_connectivity_id" {type = string}
+#Security
+variable "subscription_security_id" {type = string}
+#Application
+variable "subscription_application_id" {type = string}
+#Online
+variable "subscription_online_id" {type = string}
 
 #Management group
 variable "mg_decommissioned_name" {type = string}

@@ -41,92 +41,113 @@ resource "random_id" "random_id" {
 # }
 
 ###################################################################
-#Creating the subscriptions
+#Searching for subscriptions
 ###################################################################
 
-resource "azurerm_subscription" "sub_management" {
-  subscription_name = var.subscription_management_name
-  billing_scope_id  = data.azurerm_billing_mca_account_scope.acc.id
-  alias =var.subscription_management_name
-  #workload = "DevTest"
-  timeouts {
-      create = "30m"
-      read = "10m"
-      update = "30m"
-      delete = "30m"
-  }
-  #depends_on = [ azurerm_resource_provider_registration.resource_provider_subscription ]
+data "azurerm_subscription" "sub_management" {
+  subscription_id = var.subscription_management_id  
 }
 
-resource "azurerm_subscription" "sub_identity" {
-  subscription_name = var.subscription_identity_name
-  billing_scope_id  = data.azurerm_billing_mca_account_scope.acc.id
-  alias = var.subscription_identity_name
-  #workload = "DevTest"
-  timeouts {
-      create = "30m"
-      read = "10m"
-      update = "30m"
-      delete = "30m"
-  }
-  depends_on = [ azurerm_management_group_subscription_association.suba_management ]
+data "azurerm_subscription" "sub_identity" {
+  subscription_id = var.subscription_identity_id  
 }
 
-resource "azurerm_subscription" "sub_connectivity" {
-  subscription_name = var.subscription_connectivity_name
-  billing_scope_id  = data.azurerm_billing_mca_account_scope.acc.id
-  alias = var.subscription_connectivity_name
-  #workload = "DevTest"
-  timeouts {
-      create = "30m"
-      read = "10m"
-      update = "30m"
-      delete = "30m"
-  }
-  depends_on = [ azurerm_management_group_subscription_association.suba_identity ]
+data "azurerm_subscription" "sub_connectivity" {
+  subscription_id = va.subscription_connectivity_id
+}
+data "azurerm_subscription" "sub_security" {
+  subscription_id = va.subscription_security_id
+}
+data "azurerm_subscription" "sub_application" {
+  subscription_id = var.subscription_application_id
+}
+data "azurerm_subscription" "sub_online" {
+  subscription_id = var.subscription_online_id 
 }
 
-resource "azurerm_subscription" "sub_security" {
-  subscription_name = var.subscription_security_name
-  billing_scope_id  = data.azurerm_billing_mca_account_scope.acc.id
-  alias = var.subscription_security_name
-  #workload = "DevTest"
-  timeouts {
-      create = "30m"
-      read = "10m"
-      update = "30m"
-      delete = "30m"
-  }
-  depends_on = [ azurerm_management_group_subscription_association.suba_connectivity ]
-}
+# resource "azurerm_subscription" "sub_management" {
+#   subscription_name = var.subscription_management_name
+#   billing_scope_id  = data.azurerm_billing_mca_account_scope.acc.id
+#   alias =var.subscription_management_name
+#   #workload = "DevTest"
+#   timeouts {
+#       create = "30m"
+#       read = "10m"
+#       update = "30m"
+#       delete = "30m"
+#   }
+#   #depends_on = [ azurerm_resource_provider_registration.resource_provider_subscription ]
+# }
 
-resource "azurerm_subscription" "sub_application" {
-  subscription_name = var.subscription_application_name
-  billing_scope_id  = data.azurerm_billing_mca_account_scope.acc.id
-  alias = var.subscription_application_name
-  #workload = "DevTest"
-  timeouts {
-      create = "30m"
-      read = "10m"
-      update = "30m"
-      delete = "30m"
-  }
-  depends_on = [ azurerm_management_group_subscription_association.suba_security ]
-}
+# resource "azurerm_subscription" "sub_identity" {
+#   subscription_name = var.subscription_identity_name
+#   billing_scope_id  = data.azurerm_billing_mca_account_scope.acc.id
+#   alias = var.subscription_identity_name
+#   #workload = "DevTest"
+#   timeouts {
+#       create = "30m"
+#       read = "10m"
+#       update = "30m"
+#       delete = "30m"
+#   }
+#   depends_on = [ azurerm_management_group_subscription_association.suba_management ]
+# }
 
-resource "azurerm_subscription" "sub_online" {
-  subscription_name = var.subscription_online_name
-  billing_scope_id  = data.azurerm_billing_mca_account_scope.acc.id
-  alias = var.subscription_online_name
-  #workload = "DevTest"
-  timeouts {
-      create = "30m"
-      read = "10m"
-      update = "30m"
-      delete = "30m"
-  }
-  depends_on = [ azurerm_management_group_subscription_association.suba_connectivity ]
-}
+# resource "azurerm_subscription" "sub_connectivity" {
+#   subscription_name = var.subscription_connectivity_name
+#   billing_scope_id  = data.azurerm_billing_mca_account_scope.acc.id
+#   alias = var.subscription_connectivity_name
+#   #workload = "DevTest"
+#   timeouts {
+#       create = "30m"
+#       read = "10m"
+#       update = "30m"
+#       delete = "30m"
+#   }
+#   depends_on = [ azurerm_management_group_subscription_association.suba_identity ]
+# }
+
+# resource "azurerm_subscription" "sub_security" {
+#   subscription_name = var.subscription_security_name
+#   billing_scope_id  = data.azurerm_billing_mca_account_scope.acc.id
+#   alias = var.subscription_security_name
+#   #workload = "DevTest"
+#   timeouts {
+#       create = "30m"
+#       read = "10m"
+#       update = "30m"
+#       delete = "30m"
+#   }
+#   depends_on = [ azurerm_management_group_subscription_association.suba_connectivity ]
+# }
+
+# resource "azurerm_subscription" "sub_application" {
+#   subscription_name = var.subscription_application_name
+#   billing_scope_id  = data.azurerm_billing_mca_account_scope.acc.id
+#   alias = var.subscription_application_name
+#   #workload = "DevTest"
+#   timeouts {
+#       create = "30m"
+#       read = "10m"
+#       update = "30m"
+#       delete = "30m"
+#   }
+#   depends_on = [ azurerm_management_group_subscription_association.suba_security ]
+# }
+
+# resource "azurerm_subscription" "sub_online" {
+#   subscription_name = var.subscription_online_name
+#   billing_scope_id  = data.azurerm_billing_mca_account_scope.acc.id
+#   alias = var.subscription_online_name
+#   #workload = "DevTest"
+#   timeouts {
+#       create = "30m"
+#       read = "10m"
+#       update = "30m"
+#       delete = "30m"
+#   }
+#   depends_on = [ azurerm_management_group_subscription_association.suba_connectivity ]
+# }
 
 ###################################################################
 #Creating the management groups
