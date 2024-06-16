@@ -53,10 +53,10 @@ data "azurerm_subscription" "sub_identity" {
 }
 
 data "azurerm_subscription" "sub_connectivity" {
-  subscription_id = va.subscription_connectivity_id
+  subscription_id = var.subscription_connectivity_id
 }
 data "azurerm_subscription" "sub_security" {
-  subscription_id = va.subscription_security_id
+  subscription_id = var.subscription_security_id
 }
 data "azurerm_subscription" "sub_application" {
   subscription_id = var.subscription_application_id
@@ -285,14 +285,14 @@ resource "azurerm_management_group_subscription_association" "suba_online" {
 ###################################################################
 
 resource "azurerm_resource_group" "rg-tfstate" {
-  provider = azurerm.sa_tfstate_subscription
+  provider = azurerm.provider_sub_management
   location = var.rg_tfstate_location
   name     = var.rg_tfstate_name
   depends_on = [ azurerm_subscription.sub_management ]
 }
 
 resource "azurerm_storage_account" "sa-tfstate" {
-  provider = azurerm.sa_tfstate_subscription
+  provider = azurerm.provider_sub_management
   name                     = "${var.sa_tfstate_name}${random_id.random_id.hex}"
   resource_group_name      = var.rg_tfstate_name
   location                 = var.rg_tfstate_location
@@ -310,7 +310,7 @@ resource "azurerm_storage_account" "sa-tfstate" {
 }
 
 resource "azurerm_storage_container" "tfstate" {
-  provider = azurerm.sa_tfstate_subscription
+  provider = azurerm.provider_sub_management
   name                  = var.sa_tfstate_container_name
   storage_account_name  = var.sa_tfstate_name
   container_access_type = var.sa_tfstate_container_access_type
