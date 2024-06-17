@@ -18,31 +18,39 @@ provider "azurerm" {
 }
 provider "azurerm" {
   alias = "provider_sub_management"
-  subscription_id = azurerm_subscription.sub_management.id
+  subscription_id = var.subscription_management_id
   features {}
 }
-provider "azurerm" {
-  alias = "provider_sub_application"
-  subscription_id = azurerm_subscription.sub_application.id
-  features {}
-}
-provider "azurerm" {
-  alias = "provider_sub_connectivity"
-  subscription_id = azurerm_subscription.sub_connectivity.id
-  features {}
-}
-provider "azurerm" {
-  alias = "provider_sub_identity"
-  subscription_id = azurerm_subscription.sub_identity.id
-  features {}
-}
-provider "azurerm" {
-  alias = "provider_sub_online"
-  subscription_id = azurerm_subscription.sub_online.id
-  features {}
-}
-provider "azurerm" {
-  alias = "provider_sub_security"
-  subscription_id = azurerm_subscription.sub_security.id
-  features {}
-}
+
+# provider "azurerm" {
+#   subscription_id = data.azurerm_subscription.sub_management.subscription_id
+#   features {}
+#   alias = "provider_sub_management"
+#   use_cli = false
+  
+# }
+# provider "azurerm" {
+#   alias = "provider_sub_application"
+#   subscription_id = var.subscription_application_id
+#   features {}
+# }
+# provider "azurerm" {
+#   alias = "provider_sub_connectivity"
+#   subscription_id = var.subscription_connectivity_id
+#   features {}
+# }
+# provider "azurerm" {
+#   alias = "provider_sub_identity"
+#   subscription_id = var.subscription_identity_id
+#   features {}
+# }
+# provider "azurerm" {
+#   alias = "provider_sub_online"
+#   subscription_id = var.subscription_online_id
+#   features {}
+# }
+# provider "azurerm" {
+#   alias = "provider_sub_security"
+#   subscription_id = var.subscription_security_id
+#   features {}
+# }

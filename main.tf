@@ -13,11 +13,11 @@ data "azurerm_subscription" "current" {}
 #Billing info
 ###################################################################
 
-data "azurerm_billing_mca_account_scope" "acc" {
-  billing_account_name = var.billing_account_name
-  billing_profile_name = var.billing_profile_name
-  invoice_section_name = var.invoice_section_name
-}
+# data "azurerm_billing_mca_account_scope" "acc" {
+#   billing_account_name = var.billing_account_name
+#   billing_profile_name = var.billing_profile_name
+#   invoice_section_name = var.invoice_section_name
+# }
 
 # data "azurerm_billing_enrollment_account_scope" "acc" {
 #   billing_account_name    = var.billing_account_name
@@ -36,22 +36,16 @@ resource "random_id" "random_id" {
   byte_length = 8
 }
 
-# resource "azurerm_resource_provider_registration" "resource_provider_subscription" {
-#   name = "Microsoft.Subscription"
-# }
-
 ###################################################################
-#Searching for subscriptions
+#Existing subscriptions
 ###################################################################
 
 data "azurerm_subscription" "sub_management" {
   subscription_id = var.subscription_management_id  
 }
-
 data "azurerm_subscription" "sub_identity" {
   subscription_id = var.subscription_identity_id  
 }
-
 data "azurerm_subscription" "sub_connectivity" {
   subscription_id = var.subscription_connectivity_id
 }
@@ -223,61 +217,61 @@ resource "azurerm_management_group" "mg_online" {
 
 resource "azurerm_management_group_subscription_association" "suba_management" {
   management_group_id = azurerm_management_group.mg_management.id
-  subscription_id     = "/subscriptions/${azurerm_subscription.sub_management.subscription_id}"
+  subscription_id     = "/subscriptions/${data.azurerm_subscription.sub_management.subscription_id}"
   
   depends_on = [ 
     azurerm_management_group.mg_management,
-    azurerm_subscription.sub_management 
+    data.azurerm_subscription.sub_management 
     ]
 }
 
 resource "azurerm_management_group_subscription_association" "suba_identity" {
   management_group_id = azurerm_management_group.mg_identity.id
-  subscription_id     = "/subscriptions/${azurerm_subscription.sub_identity.subscription_id}"
+  subscription_id     = "/subscriptions/${data.azurerm_subscription.sub_identity.subscription_id}"
 
   depends_on = [ 
     azurerm_management_group.mg_identity,
-    azurerm_subscription.sub_identity 
+    data.azurerm_subscription.sub_identity 
     ]
 }
 
 resource "azurerm_management_group_subscription_association" "suba_connectivity" {
   management_group_id = azurerm_management_group.mg_connectivity.id
-  subscription_id     = "/subscriptions/${azurerm_subscription.sub_connectivity.subscription_id}"
+  subscription_id     = "/subscriptions/${data.azurerm_subscription.sub_connectivity.subscription_id}"
 
   depends_on = [ 
     azurerm_management_group.mg_connectivity,
-    azurerm_subscription.sub_connectivity
+    data.azurerm_subscription.sub_connectivity
     ]
 }
 
 resource "azurerm_management_group_subscription_association" "suba_security" {
   management_group_id = azurerm_management_group.mg_security.id
-  subscription_id     = "/subscriptions/${azurerm_subscription.sub_security.subscription_id}"
+  subscription_id     = "/subscriptions/${data.azurerm_subscription.sub_security.subscription_id}"
 
   depends_on = [ 
     azurerm_management_group.mg_security,
-    azurerm_subscription.sub_security 
+    data.azurerm_subscription.sub_security 
     ]
 }
 
 resource "azurerm_management_group_subscription_association" "suba_application" {
   management_group_id = azurerm_management_group.mg_corp.id
-  subscription_id     = "/subscriptions/${azurerm_subscription.sub_application.subscription_id}"
+  subscription_id     = "/subscriptions/${data.azurerm_subscription.sub_application.subscription_id}"
 
   depends_on = [ 
     azurerm_management_group.mg_landing_zone,
-    azurerm_subscription.sub_application 
+    data.azurerm_subscription.sub_application 
     ]
 }
 
 resource "azurerm_management_group_subscription_association" "suba_online" {
   management_group_id = azurerm_management_group.mg_online.id
-  subscription_id     = "/subscriptions/${azurerm_subscription.sub_online.subscription_id}"
+  subscription_id     = "/subscriptions/${data.azurerm_subscription.sub_online.subscription_id}"
 
   depends_on = [ 
     azurerm_management_group.mg_online,
-    azurerm_subscription.sub_online 
+    data.azurerm_subscription.sub_online 
     ]
 }
 ###################################################################
@@ -288,7 +282,7 @@ resource "azurerm_resource_group" "rg-tfstate" {
   provider = azurerm.provider_sub_management
   location = var.rg_tfstate_location
   name     = var.rg_tfstate_name
-  depends_on = [ azurerm_subscription.sub_management ]
+  depends_on = [ data.azurerm_subscription.sub_management ]
 }
 
 resource "azurerm_storage_account" "sa-tfstate" {

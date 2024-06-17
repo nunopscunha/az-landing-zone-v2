@@ -1,20 +1,20 @@
 output "subscription_management_name" {
-  value = azurerm_subscription.sub_management.id
+  value = data.azurerm_subscription.sub_management.id
 }
 output "subscription_identity_name" {
-  value = azurerm_subscription.sub_identity.id
+  value = data.azurerm_subscription.sub_identity.id
 }
 output "subscription_connectivity_name" {
-  value = azurerm_subscription.sub_connectivity.id
+  value = data.azurerm_subscription.sub_connectivity.id
 }
 output "subscription_security_name" {
-  value = azurerm_subscription.sub_security.id
+  value = data.azurerm_subscription.sub_security.id
 }
 output "subscription_application_name" {
-  value = azurerm_subscription.sub_application.id
+  value = data.azurerm_subscription.sub_application.id
 }
 output "subscription_online_name" {
-  value = azurerm_subscription.sub_online.id
+  value = data.azurerm_subscription.sub_online.id
 }
 output "mg_parent" {
   value = azurerm_management_group.mg_parent.id

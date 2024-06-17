@@ -1,8 +1,8 @@
-#Account info
-variable "enrollment_account_name" {type = string}
-variable "billing_profile_name" {type = string}
-variable "invoice_section_name" {type = string}
-variable "billing_account_name" {type = string}
+# #Account info
+# variable "enrollment_account_name" {type = string}
+# variable "billing_profile_name" {type = string}
+# variable "invoice_section_name" {type = string}
+# variable "billing_account_name" {type = string}
 
 #Subscriptions
 # variable "subscription_management_name" {type = string}
@@ -49,3 +49,6 @@ variable "sa_tfstate_replication_type_name" {type = string}
 variable "sa_tfstate_container_name" {type = string}
 variable "sa_tfstate_container_access_type" {type = string}
 variable "sa_tfstate_subscription_id" {type = string}
+
+#Managed Instance
+variable "mi_account" {type = string}
