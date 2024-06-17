@@ -10,21 +10,6 @@ data "azurerm_client_config" "core" {}
 data "azurerm_subscription" "current" {}
 
 ###################################################################
-#Billing info
-###################################################################
-
-# data "azurerm_billing_mca_account_scope" "acc" {
-#   billing_account_name = var.billing_account_name
-#   billing_profile_name = var.billing_profile_name
-#   invoice_section_name = var.invoice_section_name
-# }
-
-# data "azurerm_billing_enrollment_account_scope" "acc" {
-#   billing_account_name    = var.billing_account_name
-#   enrollment_account_name = var.enrollment_account_name
-# }
-
-###################################################################
 # Generate random text 
 ###################################################################
 resource "random_id" "random_id" {
@@ -33,7 +18,7 @@ resource "random_id" "random_id" {
     resource_group = azurerm_resource_group.rg-tfstate.name
   }
 
-  byte_length = 8
+  byte_length = 5
 }
 
 ###################################################################
@@ -58,90 +43,6 @@ data "azurerm_subscription" "sub_application" {
 data "azurerm_subscription" "sub_online" {
   subscription_id = var.subscription_online_id 
 }
-
-# resource "azurerm_subscription" "sub_management" {
-#   subscription_name = var.subscription_management_name
-#   billing_scope_id  = data.azurerm_billing_mca_account_scope.acc.id
-#   alias =var.subscription_management_name
-#   #workload = "DevTest"
-#   timeouts {
-#       create = "30m"
-#       read = "10m"
-#       update = "30m"
-#       delete = "30m"
-#   }
-#   #depends_on = [ azurerm_resource_provider_registration.resource_provider_subscription ]
-# }
-
-# resource "azurerm_subscription" "sub_identity" {
-#   subscription_name = var.subscription_identity_name
-#   billing_scope_id  = data.azurerm_billing_mca_account_scope.acc.id
-#   alias = var.subscription_identity_name
-#   #workload = "DevTest"
-#   timeouts {
-#       create = "30m"
-#       read = "10m"
-#       update = "30m"
-#       delete = "30m"
-#   }
-#   depends_on = [ azurerm_management_group_subscription_association.suba_management ]
-# }
-
-# resource "azurerm_subscription" "sub_connectivity" {
-#   subscription_name = var.subscription_connectivity_name
-#   billing_scope_id  = data.azurerm_billing_mca_account_scope.acc.id
-#   alias = var.subscription_connectivity_name
-#   #workload = "DevTest"
-#   timeouts {
-#       create = "30m"
-#       read = "10m"
-#       update = "30m"
-#       delete = "30m"
-#   }
-#   depends_on = [ azurerm_management_group_subscription_association.suba_identity ]
-# }
-
-# resource "azurerm_subscription" "sub_security" {
-#   subscription_name = var.subscription_security_name
-#   billing_scope_id  = data.azurerm_billing_mca_account_scope.acc.id
-#   alias = var.subscription_security_name
-#   #workload = "DevTest"
-#   timeouts {
-#       create = "30m"
-#       read = "10m"
-#       update = "30m"
-#       delete = "30m"
-#   }
-#   depends_on = [ azurerm_management_group_subscription_association.suba_connectivity ]
-# }
-
-# resource "azurerm_subscription" "sub_application" {
-#   subscription_name = var.subscription_application_name
-#   billing_scope_id  = data.azurerm_billing_mca_account_scope.acc.id
-#   alias = var.subscription_application_name
-#   #workload = "DevTest"
-#   timeouts {
-#       create = "30m"
-#       read = "10m"
-#       update = "30m"
-#       delete = "30m"
-#   }
-#   depends_on = [ azurerm_management_group_subscription_association.suba_security ]
-# }
-
-# resource "azurerm_subscription" "sub_online" {
-#   subscription_name = var.subscription_online_name
-#   billing_scope_id  = data.azurerm_billing_mca_account_scope.acc.id
-#   alias = var.subscription_online_name
-#   #workload = "DevTest"
-#   timeouts {
-#       create = "30m"
-#       read = "10m"
-#       update = "30m"
-#       delete = "30m"
-#   }
-#   depends_on = [ azurerm_management_group_subscription_association.suba_connectivity ]
-# }
 
 ###################################################################
 #Creating the management groups

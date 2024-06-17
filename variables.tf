@@ -51,4 +51,9 @@ variable "sa_tfstate_container_access_type" {type = string}
 variable "sa_tfstate_subscription_id" {type = string}
 
 #Managed Instance
-variable "mi_account" {type = string}
+variable "sp_tenant_id" {type = string}
+variable "sp_client_id" {type = string}
+variable "sp_client_secret" {
+    type = string
+    sensitive   = true
+    }

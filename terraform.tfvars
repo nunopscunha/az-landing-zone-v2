@@ -26,15 +26,17 @@ subscription_application_id = "b89bf583-c969-4743-8f42-6878bfb7406a"
 subscription_online_id = "24eae693-5914-454a-ac50-2db6d7df85d1"
 
 #Backend tfstate
-rg_tfstate_name = "rg-tfstate-bs"
+rg_tfstate_name     = "rg-tfstate-bs"
 rg_tfstate_location = "brazilsouth"
-sa_tfstate_name = "satfstatebs"
-sa_tfstate_tier = "Standard"
+sa_tfstate_name     = "satfstatebs"
+sa_tfstate_tier     = "Standard"
 sa_tfstate_replication_type_name = "LRS"
 sa_tfstate_container_name = "tfstate"
 sa_tfstate_container_access_type = "private"
 sa_tfstate_subscription_id = "a57406d2-0fce-4a90-92c3-9a13b56e29e6"
 
-#Managed Identity
-mi_account = "mi-lab-landing-zone-v2"
+#Service principal
+sp_tenant_id         = "a4893d30-f28b-4b37-926e-4465471dc186"
+sp_client_id         = "1357a1fd-28a2-4c00-a9e3-906ecc73e5bc"
+sp_client_secret     = "TB18Q~T6QvuD7bGltKVaOGJNld4kTaaDNcabodbh"
 
