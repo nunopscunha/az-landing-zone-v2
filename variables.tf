@@ -57,3 +57,10 @@ variable "sp_client_secret" {
     type = string
     sensitive   = true
     }
+
+#Virtual Networks components
+variable "rg_nw_name" {type = string}
+variable "rg_nw_location" {type = string}
+variable "nsg_name" {type = string}
+variable "vnet_name" {type = string}
+
