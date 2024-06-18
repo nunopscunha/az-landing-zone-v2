@@ -55,7 +55,7 @@ variable "sp_tenant_id" {type = string}
 variable "sp_client_id" {type = string}
 variable "sp_client_secret" {
     type = string
-    sensitive   = true
+    #sensitive   = true
     }
 
 #Virtual Networks components
