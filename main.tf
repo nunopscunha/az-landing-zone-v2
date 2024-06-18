@@ -15,7 +15,7 @@ data "azurerm_subscription" "current" {}
 resource "random_id" "random_id" {
   keepers = {
     # Generate a new ID only when a new resource group is defined
-    resource_group = azurerm_resource_group.rg-tfstate.name
+    #resource_group = azurerm_resource_group.rg-tfstate.name
   }
 
   byte_length = 5
@@ -223,7 +223,7 @@ resource "azurerm_management_group_subscription_association" "suba_online" {
 
 #RG
 resource "azurerm_resource_group" "rg-nw" {
-  provider = azurerm.provider_sub_connectivity
+  #provider = azurerm.provider_sub_connectivity
   location = var.rg_nw_location
   name     = var.rg_nw_name
   depends_on = [ data.azurerm_subscription.sub_connectivity ]
@@ -256,4 +256,5 @@ resource "azurerm_virtual_network" "vnet" {
   # tags = {
   #   environment = "Production"
   # }
+  depends_on = [ azurerm_resource_group.rg-nw ]
 }

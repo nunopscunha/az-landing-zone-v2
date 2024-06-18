@@ -67,6 +67,6 @@ output "mg_sandbox_name" {
 # output "invoice_section_name" {
 #   value = data.azurerm_billing_mca_account_scope.acc.invoice_section_name
 # }
-output "rg_tfstate_name" { value = azurerm_resource_group.rg-tfstate.id}
-output "sa_tfstate_name" { value = azurerm_storage_account.sa-tfstate.id}
-output "sa_tfstate_container_name" { value = azurerm_storage_container.tfstate.id}
+# output "rg_tfstate_name" { value = azurerm_resource_group.rg-tfstate.id}
+# output "sa_tfstate_name" { value = azurerm_storage_account.sa-tfstate.id}
+# output "sa_tfstate_container_name" { value = azurerm_storage_container.tfstate.id}
