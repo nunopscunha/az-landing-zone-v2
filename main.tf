@@ -180,42 +180,42 @@ resource "azurerm_management_group_subscription_association" "suba_online" {
 #Create storage account container for state files
 ###################################################################
 
-#RG
-resource "azurerm_resource_group" "rg-tfstate" {
-  provider = azurerm.provider_sub_management
-  location = var.rg_tfstate_location
-  name     = var.rg_tfstate_name
-  depends_on = [ data.azurerm_subscription.sub_management ]
-}
+# #RG
+# resource "azurerm_resource_group" "rg-tfstate" {
+#   provider = azurerm.provider_sub_management
+#   location = var.rg_tfstate_location
+#   name     = var.rg_tfstate_name
+#   depends_on = [ data.azurerm_subscription.sub_management ]
+# }
 
-#SA
-resource "azurerm_storage_account" "sa-tfstate" {
-  provider = azurerm.provider_sub_management
-  name                     = "${var.sa_tfstate_name}${random_id.random_id.hex}"
-  resource_group_name      = var.rg_tfstate_name
-  location                 = var.rg_tfstate_location
-  account_tier             = var.sa_tfstate_tier
-  account_replication_type = var.sa_tfstate_replication_type_name
+# #SA
+# resource "azurerm_storage_account" "sa-tfstate" {
+#   provider = azurerm.provider_sub_management
+#   name                     = "${var.sa_tfstate_name}${random_id.random_id.hex}"
+#   resource_group_name      = var.rg_tfstate_name
+#   location                 = var.rg_tfstate_location
+#   account_tier             = var.sa_tfstate_tier
+#   account_replication_type = var.sa_tfstate_replication_type_name
 
-  depends_on = [ azurerm_resource_group.rg-tfstate ]
+#   depends_on = [ azurerm_resource_group.rg-tfstate ]
 
-  timeouts {
-        create = "30m"
-        read = "3m"
-        update = "30m"
-        delete = "30m"
-    }
-}
+#   timeouts {
+#         create = "30m"
+#         read = "3m"
+#         update = "30m"
+#         delete = "30m"
+#     }
+# }
 
-#container
-resource "azurerm_storage_container" "tfstate" {
-  provider = azurerm.provider_sub_management
-  name                  = var.sa_tfstate_container_name
-  storage_account_name  = azurerm_storage_account.sa-tfstate.name
-  container_access_type = var.sa_tfstate_container_access_type
+# #container
+# resource "azurerm_storage_container" "tfstate" {
+#   provider = azurerm.provider_sub_management
+#   name                  = var.sa_tfstate_container_name
+#   storage_account_name  = azurerm_storage_account.sa-tfstate.name
+#   container_access_type = var.sa_tfstate_container_access_type
 
-  depends_on = [ azurerm_storage_account.sa-tfstate ]
-}
+#   depends_on = [ azurerm_storage_account.sa-tfstate ]
+# }
 
 ###################################################################
 #Create vnets

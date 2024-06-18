@@ -50,13 +50,13 @@ variable "sa_tfstate_container_name" {type = string}
 variable "sa_tfstate_container_access_type" {type = string}
 variable "sa_tfstate_subscription_id" {type = string}
 
-#Managed Instance
-variable "sp_tenant_id" {type = string}
-variable "sp_client_id" {type = string}
-variable "sp_client_secret" {
-    type = string
-    #sensitive   = true
-    }
+# #Managed Instance
+# variable "sp_tenant_id" {type = string}
+# variable "sp_client_id" {type = string}
+# variable "sp_client_secret" {
+#     type = string
+#     #sensitive   = true
+#     }
 
 #Virtual Networks components
 variable "rg_nw_name" {type = string}
